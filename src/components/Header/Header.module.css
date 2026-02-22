@@ -1,0 +1,24 @@
+.header {
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.container {
+  width: 90%;
+  max-width: 1440px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+}
