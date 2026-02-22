@@ -5,13 +5,13 @@ export default function Header() {
   return (
     <header className={css.header}>
       <div className={css.container}>
-        {/* <Link to="/" className={css.logo}>
-          Logo
-        </Link> */}
-
         <nav className={css.nav}>
-          <Link to="/login">Log In</Link>
-          <Link to="/login">Sign Up</Link>
+          <Link className={css.link} to="/login">
+            Log In
+          </Link>
+          <Link className={css.link} to="/signup">
+            Sign Up
+          </Link>
         </nav>
       </div>
     </header>
