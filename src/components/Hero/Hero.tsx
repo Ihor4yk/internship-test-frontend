@@ -1,17 +1,8 @@
 import css from "./Hero.module.css";
-import heroImage from "../../assets/images/hero.jpg";
 
 export default function Hero() {
   return (
-    <section
-      className={css.hero}
-      style={{
-        backgroundImage: `
-      linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-      url(${heroImage})
-    `,
-      }}
-    >
+    <section className={css.hero}>
       <div className={css.container}>
         <div className={css.content}>
           <h1 className={css.title}>The chemical negatively charged</h1>
