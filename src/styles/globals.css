@@ -6,7 +6,7 @@
 
 body {
   margin: 0;
-  font-family: system-ui, sans-serif;
+  font-family: sans-serif;
 }
 
 img {
@@ -22,4 +22,17 @@ button {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 8px;
+  }
 }
