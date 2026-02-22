@@ -1,15 +1,18 @@
 .header {
   background-color: #172234;
+  height: 80px;
+  display: flex;
+  align-items: center;
 }
 
 .container {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
   padding-inline: clamp(16px, 6vw, 80px);
-  padding-block: 16px;
 }
 
 .nav {

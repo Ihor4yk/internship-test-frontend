@@ -1,19 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
 import css from "../../styles/auth.module.css";
 import loginImage from "../../assets/images/login.jpg";
 
-export default function LoginPage() {
-  const navigate = useNavigate();
-
+export default function SignUpPage() {
   return (
-    <section className={css.login}>
+    <section className={css.signUp}>
       <div className={css.wrapper}>
         <div className={css.imageBlock}>
           <img src={loginImage} alt="City view" />
         </div>
 
         <div className={css.formBlock}>
-          <h1 className={css.title}>Login</h1>
+          <h1 className={css.title}>Sign Up</h1>
 
           <form className={css.form}>
             <div className={css.formGroup}>
@@ -29,20 +26,10 @@ export default function LoginPage() {
               </label>
               <input type="password" id="password" placeholder="Password" className={css.input} />
             </div>
-            <Link to="/forgot-password" className={css.link}>
-              Forgot password?
-            </Link>
 
             <button type="submit" className={css.button}>
-              Sign In
+              Sign Up
             </button>
-
-            <p className={css.registerText}>
-              Don't have account?{" "}
-              <button type="button" className={css.linkSignUp} onClick={() => navigate("/signup")}>
-                Sign Up
-              </button>
-            </p>
           </form>
         </div>
       </div>
