@@ -17,10 +17,13 @@ export default function DealsList() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className={css.dealsGrid}>
-      {deals.map(deal => (
-        <DealCard key={deal.id} deal={deal} />
-      ))}
+    <div className={css.wrapper}>
+      <h2 className={css.title}>Open Deals</h2>
+      <div className={css.dealsGrid}>
+        {deals.map(deal => (
+          <DealCard key={deal.id} deal={deal} />
+        ))}
+      </div>
     </div>
   );
 }

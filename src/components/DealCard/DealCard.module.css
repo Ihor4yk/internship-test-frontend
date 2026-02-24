@@ -1,0 +1,71 @@
+.dealCard {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4 / 3;
+}
+
+.dealCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dealCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
+}
+
+.dealOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0 14px 20px;
+  color: #fff;
+  z-index: 2;
+}
+
+.dealOverlay h3 {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.7;
+  margin-bottom: 5px;
+}
+
+.dealStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.groupData {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.groupData span {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.sold {
+  font-weight: 600;
+  text-align: right;
+  justify-self: end;
+  padding-right: 75px;
+}
+
+.dealCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}

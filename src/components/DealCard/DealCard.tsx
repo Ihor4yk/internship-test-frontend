@@ -1,4 +1,5 @@
 import type { Deal } from "../../features/deals/dealTypes";
+import css from "./DealCard.module.css";
 
 interface Props {
   deal: Deal;
@@ -6,17 +7,22 @@ interface Props {
 
 export default function DealCard({ deal }: Props) {
   return (
-    <div className="deal-card">
+    <div className={css.dealCard}>
       <img src={deal.image} alt={deal.title} />
 
-      <div className="deal-overlay">
+      <div className={css.dealOverlay}>
         <h3>{deal.title}</h3>
 
-        <div className="deal-stats">
-          <span>${deal.price.toLocaleString()}</span>
-          <span>Yield {deal.yield_percent}%</span>
-          <span>Days left {deal.days_left}</span>
-          <span>Sold {deal.sold_percent}%</span>
+        <div className={css.dealStats}>
+          <div className={css.groupData}>
+            <p>Price {Number(deal.price).toLocaleString("uk-UA")} Dhs</p>
+            <p>Ticket - {Number(deal.ticket).toLocaleString("uk-UA")} Dhs</p>
+          </div>
+          <div className={css.groupData}>
+            <p>Yield {deal.yield_percent}%</p>
+            <p>Days left {deal.days_left}</p>
+          </div>
+          <div className={css.sold}>Sold {deal.sold_percent}%</div>
         </div>
       </div>
     </div>
