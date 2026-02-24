@@ -1,21 +1,25 @@
-// import { useGetDealsQuery } from "../../features/deals/dealsAPI";
-// import DealCard from "../DealCard/DealCard";
-// import css from "./DealsList.module.css";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../app/store";
+import { getDeals } from "../../features/deals/dealsSlice";
+import DealCard from "../DealCard/DealCard";
 
-// export default function DealsList() {
-//   const { data: items, isLoading: loading } = useGetDealsQuery();
+export default function DealsList() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { deals, loading, error } = useSelector((state: RootState) => state.deals);
 
-//   if (loading) return <p>Loading...</p>;
+  useEffect(() => {
+    dispatch(getDeals());
+  }, [dispatch]);
 
-//   return (
-//     <section className={css.section}>
-//       <h2>Open Deals</h2>
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>{error}</p>;
 
-//       <div className={css.grid}>
-//         {items?.map((deal: any) => (
-//           <DealCard key={deal.id} deal={deal} />
-//         ))}
-//       </div>
-//     </section>
-//   );
-// }
+  return (
+    <div className="deals-grid">
+      {deals.map(deal => (
+        <DealCard key={deal.id} deal={deal} />
+      ))}
+    </div>
+  );
+}
