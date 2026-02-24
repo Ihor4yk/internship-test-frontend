@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
 import { getDeals } from "../../features/deals/dealsSlice";
 import DealCard from "../DealCard/DealCard";
+import css from "./DealsList.module.css";
 
 export default function DealsList() {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,7 +17,7 @@ export default function DealsList() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="deals-grid">
+    <div className={css.dealsGrid}>
       {deals.map(deal => (
         <DealCard key={deal.id} deal={deal} />
       ))}
