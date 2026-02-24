@@ -81,6 +81,24 @@
   border-color: #B29F7E;
 }
 
+.inputError,
+.inputError:focus {
+  border-color: #e74c3c !important;
+}
+
+.authError {
+  color: #e74c3c;
+  margin-bottom: 16px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.fieldError {
+  color: #e74c3c;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
 .link {
   font-family: "Lato", sans-serif;
   font-weight: 600;
@@ -107,6 +125,11 @@
 
 .button:hover {
   opacity: 0.85;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .registerText,
