@@ -95,6 +95,7 @@
   height: 44px;
   border: none;
   border-radius: 5px;
+  margin-top: 20px;
   background-color: #B29F7E;
 
   font-weight: 700;
@@ -146,8 +147,8 @@
     flex: none;
     width: 100%;
     max-width: 100%;
-    margin: 40px 20px;
-    padding: 0 60px;
+    margin: 40px 40px;
+    padding: 0 50px;
   }
 }
 
