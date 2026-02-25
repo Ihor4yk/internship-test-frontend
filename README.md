@@ -7,7 +7,7 @@ A responsive React + TypeScript single-page application built as part of an inte
 ## 🔗 Related
 
 - **Frontend repository:** https://github.com/Ihor4yk/internship-test-frontend
-- **Live demo:** internship-test-frontend-smoky.vercel.app
+- **Live demo:** https://internship-test-frontend-smoky.vercel.app/
 
 ---
 
