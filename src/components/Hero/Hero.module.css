@@ -23,7 +23,6 @@
   max-width: min(1085px, 100%);
   margin-inline: auto;
   text-align: center;
-
   position: relative;
   z-index: 2;
 }

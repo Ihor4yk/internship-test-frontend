@@ -1,11 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import css from "./Hero.module.css";
 
 export default function Hero() {
-  const navigate = useNavigate();
-
   const handleGetStarted = () => {
-    navigate("/login");
+    const section = document.getElementById("consultation");
+    section?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -18,7 +16,9 @@ export default function Hero() {
             mass defect is not formed. The chemical compound is negatively charged. Twhile the mass defect is{" "}
           </p>
 
-          <button className={css.button} onClick={handleGetStarted}>Get started</button>
+          <button className={css.button} onClick={handleGetStarted}>
+            Get started
+          </button>
         </div>
       </div>
     </section>

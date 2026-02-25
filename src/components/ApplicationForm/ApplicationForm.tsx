@@ -39,7 +39,7 @@ export default function ApplicationForm() {
   };
 
   return (
-    <section className={css.section}>
+    <section id="consultation" className={css.section}>
       <div className={css.container}>
         <div className={css.info}>
           <span className={css.label}>Real Estate</span>
