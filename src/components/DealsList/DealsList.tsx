@@ -1,13 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
 import { getDeals } from "../../features/deals/dealsSlice";
 import DealCard from "../DealCard/DealCard";
 import css from "./DealsList.module.css";
+import ImageModal from "./ImageModal";
 
 export default function DealsList() {
   const dispatch = useDispatch<AppDispatch>();
   const { deals, loading, error } = useSelector((state: RootState) => state.deals);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
     dispatch(getDeals());
@@ -19,11 +21,21 @@ export default function DealsList() {
   return (
     <div className={css.wrapper}>
       <h2 className={css.title}>Open Deals</h2>
+
       <div className={css.dealsGrid}>
-        {deals.map(deal => (
-          <DealCard key={deal.id} deal={deal} />
+        {deals.map((deal, index) => (
+          <DealCard key={deal.id} deal={deal} onClick={() => setActiveIndex(index)} />
         ))}
       </div>
+
+      {activeIndex !== null && (
+        <ImageModal
+          deals={deals}
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+          onClose={() => setActiveIndex(null)}
+        />
+      )}
     </div>
   );
 }

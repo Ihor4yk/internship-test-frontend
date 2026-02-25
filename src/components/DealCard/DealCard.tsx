@@ -3,11 +3,12 @@ import css from "./DealCard.module.css";
 
 interface Props {
   deal: Deal;
+  onClick?: () => void;
 }
 
-export default function DealCard({ deal }: Props) {
+export default function DealCard({ deal, onClick }: Props) {
   return (
-    <div className={css.dealCard}>
+    <div className={css.dealCard} onClick={onClick}>
       <img src={deal.image} alt={deal.title} />
 
       <div className={css.dealOverlay}>
