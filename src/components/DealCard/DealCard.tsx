@@ -14,14 +14,10 @@ export default function DealCard({ deal }: Props) {
         <h3>{deal.title}</h3>
 
         <div className={css.dealStats}>
-          <div className={css.groupData}>
-            <p>Price {Number(deal.price).toLocaleString("uk-UA")} Dhs</p>
-            <p>Ticket - {Number(deal.ticket).toLocaleString("uk-UA")} Dhs</p>
-          </div>
-          <div className={css.groupData}>
-            <p>Yield {deal.yield_percent}%</p>
-            <p>Days left {deal.days_left}</p>
-          </div>
+          <p>Price {Number(deal.price).toLocaleString("uk-UA")} Dhs</p>
+          <p>Ticket - {Number(deal.ticket).toLocaleString("uk-UA")} Dhs</p>
+          <p>Yield {deal.yield_percent}%</p>
+          <p>Days left {deal.days_left}</p>
           <div className={css.sold}>Sold {deal.sold_percent}%</div>
         </div>
       </div>
