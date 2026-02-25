@@ -1,73 +1,102 @@
-# React + TypeScript + Vite
+Web Application – Frontend
+📌 Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a modern, responsive frontend web application built with React and Redux Toolkit.
 
-Currently, two official plugins are available:
+The application includes:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Main landing page
 
-## React Compiler
+Authentica
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+Application submission form
 
-## Expanding the ESLint configuration
+Dynamic header behavior based on authentication state
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Full mobile adaptation
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+The project is built with scalability, clean architecture, and user experience in mind.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+🚀 Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+React
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+TypeScript
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Redux Toolkit
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+React Router
+
+Axios
+
+Vite
+
+CSS Modules
+
+🏗 Architecture
+
+The project follows a feature-based structure to ensure scalability and maintainability:
+
+src/
+ ├── api/            # API configuration (Axios instance)
+ ├── app/            # Redux store setup
+ ├── features/       # Business logic (auth, deals, applications)
+ ├── components/     # Reusable UI components
+ ├── pages/          # Application pages
+ ├── routes/         # Routing logic
+ └── styles/         # Global styles
+Key Decisions
+
+Redux Toolkit for predictable global state management
+
+Centralized API layer
+
+Modular feature separation
+
+Clean and reusable UI components
+
+Mobile-first responsive design
+
+🔐 Authentication Flow
+
+Login and Registration forms with validation
+
+Global auth state managed via Redux
+
+After login, the header updates dynamically and hides authentication buttons
+
+📱 Responsive Design
+
+Fully responsive layout (desktop, tablet, mobile)
+
+Optimized spacing and typography
+
+Clear CTAs and intuitive user flow
+
+Centered layout on small screens
+
+⚙ Running Locally
+npm install
+npm run dev
+
+Production build:
+
+npm run build
+npm run preview
+🌍 Links
+
+Live Demo: internship-test-frontend-smoky.vercel.app
+
+GitHub Repository: https://github.com/Ihor4yk/internship-test-frontend
+
+💡 What This Project Demonstrates
+
+Clean React architecture
+
+Scalable state management with Redux
+
+API integration
+
+Responsive UI implementation
+
+Structured and maintainable codebase
