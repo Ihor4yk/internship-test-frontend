@@ -1,58 +1,140 @@
-import { useState } from "react";
+import { useForm, Controller, type SubmitHandler, type Resolver } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
 import { createApplication } from "../../features/applications/applicationSlice";
+import css from "./ApplicationForm.module.css";
+import { applicationSchema } from "../../features/applications/applicationSchema";
+
+type ApplicationFormValues = {
+  name: string;
+  email: string;
+  message: string;
+  image?: File | null;
+};
 
 export default function ApplicationForm() {
   const dispatch = useDispatch<AppDispatch>();
   const { loading, error, success } = useSelector((state: RootState) => state.applications);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-    image: null as File | null,
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<ApplicationFormValues>({
+    resolver: yupResolver(applicationSchema) as Resolver<ApplicationFormValues>,
+    mode: "onBlur",
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+      image: undefined,
+    },
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files) {
-      setFormData(prev => ({ ...prev, image: e.target.files![0] }));
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    dispatch(createApplication(formData));
+  const onSubmit: SubmitHandler<ApplicationFormValues> = data => {
+    const payload = { ...data, image: data.image ?? null };
+    dispatch(createApplication(payload));
   };
 
   return (
-    <form onSubmit={handleSubmit} className="application-form">
-      <input type="text" name="name" placeholder="Your name" value={formData.name} onChange={handleChange} required />
+    <section className={css.section}>
+      <div className={css.container}>
+        <div className={css.info}>
+          <span className={css.label}>Real Estate</span>
+          <h2 className={css.title}>Get a Consultation</h2>
+          <p className={css.description}>
+            Leave your details and our expert will contact you to discuss the best investment opportunities tailored to
+            your needs.
+          </p>
+          <ul className={css.benefits}>
+            <li>✦ Free consultation</li>
+            <li>✦ Personalised offer</li>
+            <li>✦ Fast response within 24h</li>
+          </ul>
+        </div>
 
-      <input
-        type="email"
-        name="email"
-        placeholder="Your email"
-        value={formData.email}
-        onChange={handleChange}
-        required
-      />
+        <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
+          <div className={css.field}>
+            <label className={css.fieldLabel}>Your Name</label>
+            <input
+              {...register("name")}
+              placeholder="John Doe"
+              className={`${css.input} ${errors.name ? css.errorInput : ""}`}
+            />
+            {errors.name && <p className={css.errorMessage}>{errors.name.message}</p>}
+          </div>
 
-      <textarea name="message" placeholder="Your message" value={formData.message} onChange={handleChange} required />
+          <div className={css.field}>
+            <label className={css.fieldLabel}>Email Address</label>
+            <input
+              {...register("email")}
+              type="email"
+              placeholder="john@example.com"
+              className={`${css.input} ${errors.email ? css.errorInput : ""}`}
+            />
+            {errors.email && <p className={css.errorMessage}>{errors.email.message}</p>}
+          </div>
 
-      <input type="file" onChange={handleFileChange} />
+          <div className={css.field}>
+            <label className={css.fieldLabel}>Message</label>
+            <textarea
+              {...register("message")}
+              placeholder="Tell us about your interests..."
+              rows={4}
+              className={`${css.input} ${css.textarea} ${errors.message ? css.errorInput : ""}`}
+            />
+            {errors.message && <p className={css.errorMessage}>{errors.message.message}</p>}
+          </div>
 
-      <button type="submit" disabled={loading}>
-        {loading ? "Sending..." : "Submit"}
-      </button>
+          <div className={css.field}>
+            <label className={css.fieldLabel}>
+              Attachment <span className={css.optional}>(optional)</span>
+            </label>
+            <Controller
+              control={control}
+              name="image"
+              render={({ field }) => {
+                const file = field.value as File | null | undefined;
+                const previewUrl = file instanceof File ? URL.createObjectURL(file) : null;
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {success && <p style={{ color: "green" }}>Application sent successfully!</p>}
-    </form>
+                return (
+                  <div className={css.fileWrapper}>
+                    <label className={css.fileLabel}>
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                        onChange={e => field.onChange(e.target.files ? e.target.files[0] : null)}
+                        className={css.fileInput}
+                      />
+                      <span className={css.fileButton}>📎 Choose file</span>
+                    </label>
+
+                    {file && previewUrl && (
+                      <div className={css.filePreview}>
+                        <img src={previewUrl} alt="preview" className={css.previewImage} />
+                        <span className={css.fileName}>{file.name}</span>
+                        <button type="button" className={css.removeFile} onClick={() => field.onChange(null)}>
+                          ✕
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                );
+              }}
+            />
+            {errors.image && <p className={css.errorMessage}>{errors.image.message}</p>}
+          </div>
+
+          <button type="submit" className={css.submitButton} disabled={loading}>
+            {loading ? <span className={css.loader} /> : "Send Request →"}
+          </button>
+
+          {error && <p className={css.errorMessageGlobal}>{error}</p>}
+          {success && <p className={css.successMessage}>✓ Application sent successfully!</p>}
+        </form>
+      </div>
+    </section>
   );
 }
