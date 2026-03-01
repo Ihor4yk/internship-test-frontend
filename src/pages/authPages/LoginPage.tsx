@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import type { RootState, AppDispatch } from "../../app/store";
 import { clearError, login } from "../../features/auth/authSlice";
 import { loginSchema, type LoginFormData } from "../../features/auth/validationSchema";
-import css from "./auth.module.css";
+import css from "./Auth.module.css";
 import AuthImage from "../../assets/images/auth.jpg";
 import { useEffect } from "react";
 
