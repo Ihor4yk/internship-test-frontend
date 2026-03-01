@@ -36,7 +36,14 @@ export default function ImageModal({ deals, activeIndex, setActiveIndex, onClose
   }, [prev, next, onClose]);
 
   return (
-    <div className={css.backdrop} onClick={onClose}>
+    <div
+      className={css.backdrop}
+      onClick={e => {
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
+    >
       <div className={css.modal} onClick={e => e.stopPropagation()}>
         <button className={css.prev} onClick={prev}>
           ‹

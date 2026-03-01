@@ -5,6 +5,7 @@ import { getDeals } from "../../features/deals/dealsSlice";
 import DealCard from "../DealCard/DealCard";
 import css from "./DealsList.module.css";
 import ImageModal from "./ImageModal";
+import Loader from "../Loader/Loader";
 
 export default function DealsList() {
   const dispatch = useDispatch<AppDispatch>();
@@ -15,7 +16,7 @@ export default function DealsList() {
     dispatch(getDeals());
   }, [dispatch]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader />;
   if (error) return <p>{error}</p>;
 
   return (

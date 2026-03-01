@@ -109,6 +109,11 @@
   color: #B29F7E;
 }
 
+.link:hover,
+.linkSignUp:hover {
+  text-decoration: underline;
+}
+
 .button {
   height: 44px;
   border: none;

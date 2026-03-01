@@ -7,7 +7,8 @@ import css from "./Header.module.css";
 export default function Header() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const isAuthPage = location.pathname === "/login" || location.pathname === "/signup";
+  const isAuthPage =
+    location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/forgot-password";
   const isAuthenticated = useSelector((s: RootState) => s.auth?.isAuthenticated);
   const userEmail = useSelector((s: RootState) => s.auth?.user?.email);
 
